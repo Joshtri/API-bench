@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "api-benchmark-landing",
+  "compatibility_date": "2026-10-01",
+  // Static site: serve the Vite build output, no Worker script needed.
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
