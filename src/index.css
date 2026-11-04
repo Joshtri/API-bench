@@ -1,0 +1,452 @@
+@import 'tailwindcss';
+
+/* Dark mode follows data-theme on <html> (set in index.html and the nav toggle). */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ── Tokens ─────────────────────────────────────────────────────────────────
+   Flat surfaces only, no background gradients. Dark surfaces come from the
+   approved set: #181818 · #1F1F1F · #272727 · #313131. */
+
+:root {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --surface-2: #f2f2ef;
+  --surface-3: #e8e8e4;
+  --ink: #111111;
+  --ink-2: #404040;
+  --muted: #666666;
+  --rule: rgb(17 17 17 / 0.08);
+  --rule-strong: rgb(17 17 17 / 0.14);
+  --good: #15803d;
+  --good-soft: #e8f5ec;
+  --bad: #b42318;
+  --bad-soft: #fdecea;
+  --nav-bg: rgb(255 255 255 / 0.72);
+  --menu-bg: rgb(250 250 248 / 0.94);
+  --shadow: 0 1px 2px rgb(17 17 17 / 0.04), 0 16px 40px -20px rgb(17 17 17 / 0.18);
+  --hero-from: #000000;
+  --hero-to: #666666;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme='dark'] {
+  --bg: #181818;
+  --surface: #1f1f1f;
+  --surface-2: #272727;
+  --surface-3: #313131;
+  --ink: #f5f5f5;
+  --ink-2: #cfcfcf;
+  --muted: #9b9b9b;
+  --rule: rgb(255 255 255 / 0.08);
+  --rule-strong: rgb(255 255 255 / 0.14);
+  --good: #4ade80;
+  --good-soft: rgb(74 222 128 / 0.12);
+  --bad: #ff8a80;
+  --bad-soft: rgb(255 138 128 / 0.12);
+  --nav-bg: rgb(31 31 31 / 0.7);
+  --menu-bg: rgb(24 24 24 / 0.94);
+  --shadow: 0 0 0 1px rgb(0 0 0 / 0.3), 0 16px 40px -20px rgb(0 0 0 / 0.6);
+  --hero-from: #ffffff;
+  --hero-to: #9b9b9b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-nav: var(--nav-bg);
+  --color-menu: var(--menu-bg);
+  --shadow-soft: var(--shadow);
+  --ease-base: var(--ease);
+}
+
+@theme {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--rule);
+  }
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html[data-theme='dark'] {
+    color-scheme: dark;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    -webkit-tap-highlight-color: transparent;
+  }
+  ::selection {
+    background: var(--surface-3);
+  }
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  summary {
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ── Text styles (landing-page-design B1) ────────────────────────────────
+   Every text element uses one of these. Sizes come from Tailwind's scale. */
+
+@utility heading-1 {
+  font-size: var(--text-6xl);
+  line-height: var(--text-6xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+@utility heading-2 {
+  font-size: var(--text-5xl);
+  line-height: var(--text-5xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+@utility heading-3 {
+  font-size: var(--text-4xl);
+  line-height: var(--text-4xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+@utility heading-4 {
+  font-size: var(--text-3xl);
+  line-height: var(--text-3xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+@utility heading-5 {
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+@utility heading-6 {
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+@utility title-1 {
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  font-weight: 500;
+}
+@utility title-2 {
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: 500;
+}
+@utility title-3 {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 500;
+}
+@utility title-4 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
+}
+@utility title-5 {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 500;
+}
+@utility body-1 {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 600;
+}
+@utility body-2 {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 500;
+}
+@utility body-3 {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 400;
+}
+@utility body-4 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
+}
+@utility body-5 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
+}
+@utility body-6 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 400;
+}
+/* Body 7: the hero subheading, one step up from Body 3. */
+@utility body-7 {
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: 400;
+}
+@utility button-lg {
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: 600;
+}
+@utility button-md {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 600;
+}
+@utility button-sm {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
+}
+@utility button-xsm {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 600;
+}
+@utility caption-1 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
+}
+@utility caption-2 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 400;
+}
+@utility caption-3 {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 600;
+}
+@utility caption-4 {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 500;
+}
+@utility caption-5 {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 400;
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hero heading: the one place a gradient is allowed, and only on text. */
+@utility hero-gradient {
+  background-image: linear-gradient(90deg, var(--hero-from), var(--hero-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition:
+    transform 300ms var(--ease),
+    background-color 300ms var(--ease),
+    opacity 300ms var(--ease);
+  &:active {
+    transform: scale(0.98);
+  }
+}
+@utility btn-primary {
+  background-color: var(--ink);
+  color: var(--bg);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-1px);
+      opacity: 0.88;
+    }
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+/* Square icon button, 40px, with the same states as .btn. */
+@utility icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: var(--ink-2);
+  transition:
+    transform 300ms var(--ease),
+    background-color 300ms var(--ease),
+    color 300ms var(--ease);
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--surface-2);
+      color: var(--ink);
+    }
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+@utility btn-ghost {
+  color: var(--ink);
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--surface-2);
+    }
+  }
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────── */
+
+/* Sections rise 32px and fade in once, when they scroll into view. */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 700ms var(--ease) var(--reveal-delay, 0ms),
+    transform 700ms var(--ease) var(--reveal-delay, 0ms);
+}
+.reveal[data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero copy settles in on load. */
+.hero-in > * {
+  animation: rise 700ms var(--ease) both;
+}
+.hero-in > :nth-child(2) {
+  animation-delay: 80ms;
+}
+.hero-in > :nth-child(3) {
+  animation-delay: 160ms;
+}
+.hero-in > :nth-child(4) {
+  animation-delay: 240ms;
+}
+.hero-in > :nth-child(5) {
+  animation-delay: 320ms;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Tagline reveal: each word goes from muted to full, one at a time. */
+.tagline-word {
+  opacity: 0.28;
+  transition: opacity 500ms var(--ease);
+}
+.tagline-word[data-on] {
+  opacity: 1;
+}
+
+/* Mobile menu links arrive one after another. */
+.menu-link {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 500ms var(--ease) var(--d, 0ms),
+    transform 500ms var(--ease) var(--d, 0ms);
+}
+[data-open] .menu-link {
+  opacity: 1;
+  transform: none;
+}
+
+/* FAQ answer fades and settles in when a question opens. */
+.faq[open] .faq-answer {
+  animation: rise-sm 500ms var(--ease) both;
+}
+@keyframes rise-sm {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Reduced motion: no movement, only plain opacity changes. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .menu-link {
+    transform: none !important;
+  }
+  .hero-in > *,
+  .faq[open] .faq-answer {
+    animation-name: fade !important;
+  }
+  .tagline-word {
+    opacity: 1 !important;
+    transition: none;
+  }
+  .btn:active,
+  .btn-primary:hover {
+    transform: none !important;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

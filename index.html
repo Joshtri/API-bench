@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#FAFAF8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>API Bench: prove your API migration worked</title>
+    <meta name="description" content="Run the old and new version of your API side by side. API Bench checks every endpoint returns the same data, then shows how much faster the new one is. Free and open source." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="API Bench: ship your API migration without the guesswork" />
+    <meta property="og:description" content="Checks every endpoint returns the same data, then shows how much faster the new version is. Free, open source, runs on your machine." />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="API Bench: ship your API migration without the guesswork" />
+    <meta name="twitter:description" content="Checks every endpoint returns the same data, then shows how much faster the new version is." />
+    <meta name="twitter:image" content="/og.png" />
+    <script>
+      // Set the theme before React loads so the page doesn't flash.
+      try {
+        const t = localStorage.getItem('apibench.theme') ||
+          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        document.documentElement.setAttribute('data-theme', t)
+      } catch {}
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is it free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. API Bench is open source. There is no account, no sign up and no paid plan." } },
+          { "@type": "Question", "name": "Does it work with my API?", "acceptedAnswer": { "@type": "Answer", "text": "If it speaks HTTP, yes. It does not care what language or framework is behind it. Requests can use any method, with JSON bodies and your own headers for auth." } },
+          { "@type": "Question", "name": "Will it change my data?", "acceptedAnswer": { "@type": "Answer", "text": "Only if you ask it to. GET requests are read only. Endpoints that write show a warning first, because every request is sent to both versions." } },
+          { "@type": "Question", "name": "Does anything leave my machine?", "acceptedAnswer": { "@type": "Answer", "text": "No. The tool runs locally and only talks to the two API addresses you give it." } },
+          { "@type": "Question", "name": "What do I need to install?", "acceptedAnswer": { "@type": "Answer", "text": "Node 20 or newer. Clone the repository, run npm install and npm run dev." } }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
