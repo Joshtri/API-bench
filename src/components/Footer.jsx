@@ -6,7 +6,7 @@ import { DownloadGrid } from './Download.jsx'
 export function FinalCta() {
   return (
     <Section id="download">
-      <Reveal className="relative isolate overflow-hidden rounded-3xl border border-rule bg-surface px-6 py-16 text-center md:px-12 md:py-20">
+      <Reveal className="relative isolate overflow-hidden rounded-3xl border border-rule bg-surface px-4 py-16 text-center sm:px-6 md:px-8 md:py-20 lg:px-10">
         <AsciiField className="pointer-events-none absolute inset-0 -z-10 overflow-hidden font-mono text-muted opacity-30 select-none" />
         <h2 className="heading-4 md:heading-3 mx-auto max-w-[680px] text-ink">
           Try it on your next migration
@@ -14,7 +14,7 @@ export function FinalCta() {
         <p className="body-3 mx-auto mt-4 max-w-md text-ink-2">
           A free desktop app for Windows and Linux. No account, no sign up, and nothing leaves your machine.
         </p>
-        <DownloadGrid className="mx-auto mt-10 max-w-4xl" />
+        <DownloadGrid className="mx-auto mt-10 max-w-6xl" />
       </Reveal>
     </Section>
   )

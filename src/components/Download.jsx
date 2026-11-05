@@ -49,8 +49,8 @@ function VariantLink({ v, strong, wide }) {
       href={v.url}
       title={v.name}
       className={cn(
-        'flex items-center gap-2 rounded-lg px-3 py-2 transition-colors duration-300 ease-base',
-        wide && 'flex-1',
+        'flex min-w-[9.5rem] flex-1 items-center gap-3 whitespace-nowrap rounded-lg px-4 py-2.5 transition-colors duration-300 ease-base',
+        wide && 'lg:min-w-[12rem]',
         strong ? 'bg-ink text-bg hover:opacity-90' : 'bg-surface text-ink shadow-[inset_0_0_0_1px_var(--rule-strong)] hover:bg-surface-3',
       )}
     >
@@ -67,7 +67,7 @@ function PlatformCard({ os, formats, current }) {
   return (
     <li
       className={cn(
-        'flex flex-col rounded-2xl border bg-surface p-5 text-left',
+        'flex flex-col rounded-2xl border bg-surface p-6 text-left',
         current ? 'border-rule-strong shadow-soft' : 'border-rule',
       )}
     >
@@ -86,12 +86,12 @@ function PlatformCard({ os, formats, current }) {
 
       <ul className="mt-5 flex flex-col gap-2">
         {formats.map((f, i) => (
-          <li key={f.ext} className="flex flex-col gap-2 rounded-xl bg-surface-2 p-2 sm:flex-row sm:items-center">
-            <div className="flex-1 px-2 py-1">
+          <li key={f.ext} className="flex flex-col gap-3 rounded-xl bg-surface-2 p-3 lg:flex-row lg:items-center">
+            <div className="min-w-0 flex-1 px-2 py-1">
               <p className="title-4 text-ink">{f.label}</p>
               <p className="caption-5 font-mono text-muted">{f.ext}</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2 lg:shrink-0">
               {f.variants.map((v, j) => (
                 <VariantLink key={v.name} v={v} strong={i === 0 && j === 0} wide={f.variants.length === 1} />
               ))}
@@ -114,7 +114,7 @@ export function DownloadGrid({ className }) {
 
   return (
     <div className={className}>
-      <ul className="mx-auto grid max-w-4xl items-start gap-3 md:grid-cols-2">
+      <ul className="mx-auto grid max-w-6xl items-start gap-4 md:grid-cols-2">
         {ORDER.map((p) => (
           <PlatformCard key={p} os={p} formats={release.files[p]} current={p === os} />
         ))}
