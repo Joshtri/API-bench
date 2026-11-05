@@ -21,8 +21,8 @@ export const FAQS = [
     a: 'No. The tool runs locally and only talks to the two API addresses you give it. There is no account and no cloud service involved.',
   },
   {
-    q: 'Why does it run in Node instead of my browser?',
-    a: 'Browsers limit how many connections they open to one server and block many cross site calls. That would make the numbers wrong. A small runner on your machine sends the requests instead, so you measure the API and not the browser.',
+    q: 'Why a desktop app instead of a website?',
+    a: 'Browsers limit how many connections they open to one server and block many cross site calls. That would make the numbers wrong. The desktop app sends the requests itself, so you measure the API and not the browser.',
   },
   {
     q: 'Can I compare a staging or production API?',
@@ -38,7 +38,7 @@ export const FAQS = [
   },
   {
     q: 'What do I need to install?',
-    a: 'Node 20 or newer. Clone the repository, run npm install and npm run dev, and it opens in your browser.',
+    a: 'Just the app. Download the installer for Windows (.exe or .msi) or Linux (.AppImage, .deb or .rpm, for x64 or ARM64) and open it. No Node, no terminal.',
   },
 ]
 

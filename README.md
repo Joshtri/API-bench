@@ -11,8 +11,11 @@ npm run build     # static files in dist/, deploy anywhere (Cloudflare Pages, et
 
 ## Before deploying
 
-- Set the real repository URL in `src/config.js` (`REPO_URL`). It feeds every
-  GitHub button and the install command.
+- Download links come from the latest **published** GitHub release of the repo
+  set in `src/config.js` (`REPO`), fetched in the browser at page load
+  (`src/lib/release.js`). Draft releases are not visible, so publish the draft
+  that the desktop CI creates. If the request fails, buttons fall back to the
+  GitHub releases page.
 - `public/og.png` is a screenshot of the hero. Regenerate it if the hero changes.
 
 ## Design
@@ -27,8 +30,7 @@ Built with the `landing-page-design` skill:
   Both pause off screen and draw one still frame with reduced motion.
 - Phosphor icons. One motion curve, `cubic-bezier(0.22, 1, 0.36, 1)`.
 - Blocks based on 21st.dev: Announcement pill (ported from haydenbleasel's
-  component, `ui/announcement.jsx`), typing install terminal (`Terminal.jsx`),
-  number ticker on the hero results (`NumberTicker.jsx`), Ghost Accordion FAQ.
+  component, `ui/announcement.jsx`), number ticker on the hero results (`NumberTicker.jsx`), Ghost Accordion FAQ.
   No extra npm dependencies.
 - Sections: hero, problem, benefits, tagline reveal, how it works, report,
   FAQ, final CTA. Static `404.html`, `privacy.html`, `terms.html` in `public/`.

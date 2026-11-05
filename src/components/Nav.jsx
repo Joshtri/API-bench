@@ -3,12 +3,14 @@ import { GithubLogoIcon, MoonIcon, SunIcon } from '@phosphor-icons/react'
 import { REPO_URL } from '../config.js'
 import { cn } from '../lib/cn.js'
 import { Logo } from './bits.jsx'
+import { DownloadButton } from './Download.jsx'
 
 const LINKS = [
   ['how', 'How it works'],
   ['benefits', 'Features'],
   ['proof', 'Report'],
   ['faq', 'FAQ'],
+  ['download', 'Download'],
 ]
 
 // Which section is on screen, so the nav can mark it as current.
@@ -108,12 +110,12 @@ export default function Nav() {
           </ul>
 
           <div className="ml-auto flex items-center gap-1 md:ml-2">
+            <a href={REPO_URL} aria-label="API Bench on GitHub" className="icon-btn">
+              <GithubLogoIcon weight="fill" className="size-5" />
+            </a>
             <ThemeButton theme={theme} onToggle={toggleTheme} />
             <span className="hidden md:block">
-              <a href={REPO_URL} className="btn btn-primary button-sm">
-                <GithubLogoIcon weight="fill" className="size-4" />
-                Get it free
-              </a>
+              <DownloadButton size="sm" />
             </span>
             <span className="flex md:hidden">
             <button
@@ -170,10 +172,7 @@ export default function Nav() {
           ))}
         </ul>
         <div className="menu-link mt-auto" style={{ '--d': `${Math.min(LINKS.length * 60, 400)}ms` }}>
-          <a href={REPO_URL} className="btn btn-primary button-md w-full">
-            <GithubLogoIcon weight="fill" className="size-5" />
-            Get it free on GitHub
-          </a>
+          <DownloadButton className="w-full" />
         </div>
       </div>
     </>
