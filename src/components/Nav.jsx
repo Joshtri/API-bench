@@ -85,7 +85,7 @@ export default function Nav() {
       <header className="fixed inset-x-0 top-4 z-40 flex justify-center px-4">
         <nav
           aria-label="Main"
-          className="flex w-full max-w-3xl items-center gap-2 rounded-2xl border border-rule bg-nav p-2 shadow-soft backdrop-blur-xl md:w-auto"
+          className="flex w-full max-w-4xl items-center gap-2 rounded-2xl border border-rule bg-nav p-2 shadow-soft backdrop-blur-xl md:w-auto"
         >
           <a href="#top" className="btn btn-ghost title-3 text-ink" onClick={() => setOpen(false)}>
             <Logo className="size-6 text-ink" />
